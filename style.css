@@ -195,13 +195,13 @@ body {
     font-size: 0.8rem;
   }
   .skin-image {
-    max-width: 150px;
+    max-width: 200px;
     height: auto;
     margin-top: 10px;
   }
 
   #skinViewer, #skinViewerBedrock {
-    width: 200px !important;
-    height: 280px !important;
+    width: 250px !important;
+    height: 330px !important;
   }
 }

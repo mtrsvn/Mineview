@@ -17,7 +17,7 @@ async function searchJava() {
       <h4 style="margin: 10px; font-size: 1.3em;">Java Profile: </h4>
       <p style="margin: 10px; font-size: 90%;">Username: ${data.username}</p>
       <p style="margin: 10px; font-size: 90%;">UUID: ${data.id}</p>
-      <div id="skinViewer" style="margin: 10px auto; width: 300px; height: 400px;"></div>
+      <div id="skinViewer" style="margin: 10px auto;"></div>
       <div class="download-btn-container">
         <a href="https://starlightskins.lunareclipse.studio/render/skin/${data.username}/default"
            download="${data.username}_skin.png"
@@ -28,16 +28,19 @@ async function searchJava() {
       </div>
     </div>
   `;
-  
+
     setTimeout(() => {
       const container = document.getElementById('skinViewer');
       if (container) {
         container.innerHTML = '';
         try {
           if (typeof skinview3d !== 'undefined' && skinview3d.SkinViewer) {
+            // Responsive size
+            let width = window.innerWidth <= 768 ? 250 : 300;
+            let height = window.innerWidth <= 768 ? 330 : 400;
             const skinViewer = new skinview3d.SkinViewer({
-              width: 300,
-              height: 400,
+              width,
+              height,
               skin: `https://crafatar.com/skins/${data.id}`
             });
             container.appendChild(skinViewer.canvas);
@@ -76,7 +79,7 @@ async function searchBedrock() {
       <h4 style="margin: 10px; font-size: 1.3em;">Bedrock Profile: </h4>
       <p style="margin: 10px; font-size: 90%;">Gamertag: ${data.gamertag}</p>
       <p style="margin: 10px; font-size: 90%;">XUID: ${data.xuid}</p>
-      <div id="skinViewerBedrock" style="margin: 10px auto; width: 300px; height: 400px;"></div>
+      <div id="skinViewerBedrock" style="margin: 10px auto;"></div>
       <div class="download-btn-container">
         <a href="https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default"
            download=".${data.gamertag}_skin.png"
@@ -87,16 +90,19 @@ async function searchBedrock() {
       </div>
     </div>
   `;
-  
+
     setTimeout(() => {
       const container = document.getElementById('skinViewerBedrock');
       if (container) {
         container.innerHTML = '';
         try {
           if (typeof skinview3d !== 'undefined' && skinview3d.SkinViewer) {
+            // Responsive size
+            let width = window.innerWidth <= 768 ? 250 : 300;
+            let height = window.innerWidth <= 768 ? 330 : 400;
             const skinViewer = new skinview3d.SkinViewer({
-              width: 300,
-              height: 400,
+              width,
+              height,
               skin: `https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`
             });
             container.appendChild(skinViewer.canvas);
