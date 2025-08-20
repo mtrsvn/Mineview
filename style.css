@@ -1,3 +1,6 @@
+.download-btn-container {
+  margin-top: 1.5em !important;
+}
 @font-face {
   font-family: Mojangles;
   src: url("fonts/Minecraft.ttf");
@@ -86,6 +89,20 @@ body {
   object-fit: contain;
 }
 
+#skinViewer, #skinViewerBedrock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px auto;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#skinViewer canvas, #skinViewerBedrock canvas {
+  border-radius: 8px;
+}
+
 .profile-box {
   border-radius: 10px;
   padding: 20px;
@@ -165,6 +182,11 @@ body {
     height: 200px;
   }
 
+  #skinViewer, #skinViewerBedrock {
+    width: 250px !important;
+    height: 320px !important;
+  }
+
   .profile-box {
     margin: 3em;
     padding: 15px;
@@ -173,8 +195,13 @@ body {
     font-size: 0.8rem;
   }
   .skin-image {
-    max-width: 150px; 
-    height: auto; 
-    margin-top: 10px; 
+    max-width: 150px;
+    height: auto;
+    margin-top: 10px;
+  }
+
+  #skinViewer, #skinViewerBedrock {
+    width: 200px !important;
+    height: 280px !important;
   }
 }
