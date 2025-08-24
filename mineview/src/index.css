@@ -2,8 +2,8 @@
   margin-top: 1.5em !important;
 }
 @font-face {
-  font-family: Mojangles;
-  src: url("fonts/Minecraft.ttf");
+  font-family: "Mojangles";
+  src: url("/fonts/Minecraft.ttf") format("truetype");
 }
 
 body {
@@ -36,9 +36,8 @@ body {
 }
 
 .navbar-nav .nav-link:hover {
-  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.7); 
+  text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.7);
 }
-
 
 .hamburgers {
   justify-content: center;
@@ -89,7 +88,8 @@ body {
   object-fit: contain;
 }
 
-#skinViewer, #skinViewerBedrock {
+#skinViewer,
+#skinViewerBedrock {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -99,7 +99,8 @@ body {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-#skinViewer canvas, #skinViewerBedrock canvas {
+#skinViewer canvas,
+#skinViewerBedrock canvas {
   border-radius: 8px;
 }
 
@@ -128,7 +129,7 @@ body {
 }
 
 .search-container .form-control::placeholder {
-  color: #fff!important;
+  color: #fff !important;
   opacity: 0.1 !important;
 }
 
@@ -212,7 +213,8 @@ body {
     height: 200px;
   }
 
-  #skinViewer, #skinViewerBedrock {
+  #skinViewer,
+  #skinViewerBedrock {
     width: 250px !important;
     height: 320px !important;
   }
@@ -230,7 +232,8 @@ body {
     margin-top: 10px;
   }
 
-  #skinViewer, #skinViewerBedrock {
+  #skinViewer,
+  #skinViewerBedrock {
     width: 200px !important;
     height: 280px !important;
   }
