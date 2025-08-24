@@ -1,3 +1,6 @@
+// SkinViewer3D.jsx
+// React component for rendering a Minecraft skin in interactive 3D using skinview3d.
+// Usage: <SkinViewer3D skinUrl="..." width={300} height={400} />
 import React, { useRef, useEffect } from "react";
 
 export default function SkinViewer3D({ skinUrl, width = 300, height = 400 }) {
@@ -5,8 +8,7 @@ export default function SkinViewer3D({ skinUrl, width = 300, height = 400 }) {
 
   useEffect(() => {
     if (!viewerRef.current || !window.skinview3d) return;
-    viewerRef.current.innerHTML = ""; // Clean previous canvas
-
+    viewerRef.current.innerHTML = "";
     try {
       const { skinview3d } = window;
       const skinViewer = new skinview3d.SkinViewer({
