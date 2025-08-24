@@ -123,16 +123,46 @@ body {
   background-color: #222831 !important;
   color: #eee !important;
   border: 1px solid #eeeeee !important;
-}
-
-.search-container .form-control:focus {
-  outline: none !important;
-  box-shadow: none !important;
-  border: 1px solid #eeeeee !important;
+  caret-color: #eee !important;
+  transition: background-color 0s, color 0s, caret-color 0s;
 }
 
 .search-container .form-control::placeholder {
-  color: #393e46 !important;
+  color: #fff!important;
+  opacity: 0.1 !important;
+}
+
+.search-container .form-control:-webkit-autofill,
+.search-container .form-control:-webkit-autofill:focus,
+.search-container .form-control:-webkit-autofill:hover,
+.search-container .form-control:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 100px #222831 inset !important;
+  box-shadow: 0 0 0 100px #222831 inset !important;
+  -webkit-text-fill-color: #eee !important;
+  color: #eee !important;
+  border: 1px solid #eeeeee !important;
+  caret-color: #eee !important;
+  transition: background-color 0s, color 0s, caret-color 0s;
+  transition-delay: 0s;
+}
+
+.search-container .form-control:-moz-autofill {
+  box-shadow: 0 0 0 100px #222831 inset !important;
+  -moz-text-fill-color: #eee !important;
+  color: #eee !important;
+  border: 1px solid #eeeeee !important;
+  caret-color: #eee !important;
+  transition: background-color 0s, color 0s, caret-color 0s;
+  transition-delay: 0s;
+}
+
+.search-container .form-control:focus {
+  background-color: transparent !important;
+  border: 1px solid #eeeeee !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: #eee !important;
+  caret-color: #eee !important;
 }
 
 .button-container {

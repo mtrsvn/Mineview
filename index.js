@@ -15,14 +15,20 @@ async function searchJava() {
     resultDiv.innerHTML = `
     <div style="margin: 10px;">
       <h4 style="margin: 10px; font-size: 1.3em;">Java Profile: </h4>
-      <p style="margin: 10px; font-size: 90%;">Username: ${data.username}</p>
-      <p style="margin: 10px; font-size: 90%;">UUID: ${data.id}</p>
+      <p style="margin: 10px; font-size: 90%;">
+        Username: ${data.username}
+        <i class="fa-solid fa-copy" id="copyJavaUsername" style="cursor: pointer; font-size: 0.9em; vertical-align: middle; margin-left: 6px;" title="Copy Username"></i>
+      </p>
+      <p style="margin: 10px; font-size: 90%;">
+        UUID: ${data.id}
+        <i class="fa-solid fa-copy" id="copyJavaUUID" style="cursor: pointer; font-size: 0.9em; vertical-align: middle; margin-left: 6px;" title="Copy UUID"></i>
+      </p>
       <div id="skinViewer" style="margin: 10px auto; width: 300px; height: 400px;"></div>
       <div class="download-btn-container">
-        <a href="https://starlightskins.lunareclipse.studio/render/skin/${data.username}/default"
-           download="${data.username}_skin.png"
-           style="font-size: 1em; text-decoration: none; color: #9FB3DF;"
-           target="_blank">
+        <a href="#" id="downloadJavaSkin"
+           class="btn w-100"
+           style="margin-top: 10px;"
+        >
            Download Skin
         </a>
       </div>
@@ -34,10 +40,13 @@ async function searchJava() {
       if (container) {
         container.innerHTML = '';
         try {
+          const isMobile = window.innerWidth <= 768;
+          const width = isMobile ? 200 : 300;
+          const height = isMobile ? 260 : 400;
           if (typeof skinview3d !== 'undefined' && skinview3d.SkinViewer) {
             const skinViewer = new skinview3d.SkinViewer({
-              width: 300,
-              height: 400,
+              width,
+              height,
               skin: `https://crafatar.com/skins/${data.id}`
             });
             container.appendChild(skinViewer.canvas);
@@ -53,6 +62,43 @@ async function searchJava() {
         }
       }
     }, 500);
+ 
+    setTimeout(() => {
+      const copyUsernameBtn = document.getElementById('copyJavaUsername');
+      if (copyUsernameBtn) {
+        copyUsernameBtn.onclick = () => {
+          navigator.clipboard.writeText(data.username);
+          copyUsernameBtn.style.opacity = "0.5";
+          setTimeout(() => copyUsernameBtn.style.opacity = "1", 800);
+        };
+      }
+      const copyUUIDBtn = document.getElementById('copyJavaUUID');
+      if (copyUUIDBtn) {
+        copyUUIDBtn.onclick = () => {
+          navigator.clipboard.writeText(data.id);
+          copyUUIDBtn.style.opacity = "0.5";
+          setTimeout(() => copyUUIDBtn.style.opacity = "1", 800);
+        };
+      }
+
+      // Download Java skin handler
+      const downloadJavaSkin = document.getElementById('downloadJavaSkin');
+      if (downloadJavaSkin) {
+        downloadJavaSkin.onclick = async (e) => {
+          e.preventDefault();
+          const url = `https://starlightskins.lunareclipse.studio/render/skin/${data.username}/default`;
+          const response = await fetch(url);
+          const blob = await response.blob();
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = `${data.username}_skin.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(link.href);
+        };
+      }
+    }, 100);
     
   } catch (err) {
     resultDiv.innerHTML = `<p class="text-danger" style="font-size: 90%;">Java user not found.</p>`;
@@ -74,14 +120,20 @@ async function searchBedrock() {
     resultDiv.innerHTML = `
     <div style="margin: 10px;">
       <h4 style="margin: 10px; font-size: 1.3em;">Bedrock Profile: </h4>
-      <p style="margin: 10px; font-size: 90%;">Gamertag: ${data.gamertag}</p>
-      <p style="margin: 10px; font-size: 90%;">XUID: ${data.xuid}</p>
+      <p style="margin: 10px; font-size: 90%;">
+        Gamertag: ${data.gamertag}
+        <i class="fa-solid fa-copy" id="copyBedrockGamertag" style="cursor: pointer; font-size: 0.9em; vertical-align: middle; margin-left: 6px;" title="Copy Gamertag"></i>
+      </p>
+      <p style="margin: 10px; font-size: 90%;">
+        XUID: ${data.xuid}
+        <i class="fa-solid fa-copy" id="copyBedrockXUID" style="cursor: pointer; font-size: 0.9em; vertical-align: middle; margin-left: 6px;" title="Copy XUID"></i>
+      </p>
       <div id="skinViewerBedrock" style="margin: 10px auto; width: 300px; height: 400px;"></div>
       <div class="download-btn-container">
-        <a href="https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default"
-           download=".${data.gamertag}_skin.png"
-           style="font-size: 1em; text-decoration: none; color: #9FB3DF;"
-           target="_blank">
+        <a href="#" id="downloadBedrockSkin"
+           class="btn w-100"
+           style="margin-top: 10px;"
+        >
            Download Skin
         </a>
       </div>
@@ -93,10 +145,13 @@ async function searchBedrock() {
       if (container) {
         container.innerHTML = '';
         try {
+          const isMobile = window.innerWidth <= 768;
+          const width = isMobile ? 200 : 300;
+          const height = isMobile ? 260 : 400;
           if (typeof skinview3d !== 'undefined' && skinview3d.SkinViewer) {
             const skinViewer = new skinview3d.SkinViewer({
-              width: 300,
-              height: 400,
+              width,
+              height,
               skin: `https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`
             });
             container.appendChild(skinViewer.canvas);
@@ -112,6 +167,44 @@ async function searchBedrock() {
         }
       }
     }, 500);
+
+
+    setTimeout(() => {
+      const copyGamertagBtn = document.getElementById('copyBedrockGamertag');
+      if (copyGamertagBtn) {
+        copyGamertagBtn.onclick = () => {
+          navigator.clipboard.writeText(data.gamertag);
+          copyGamertagBtn.style.opacity = "0.5";
+          setTimeout(() => copyGamertagBtn.style.opacity = "1", 800);
+        };
+      }
+      const copyXUIDBtn = document.getElementById('copyBedrockXUID');
+      if (copyXUIDBtn) {
+        copyXUIDBtn.onclick = () => {
+          navigator.clipboard.writeText(data.xuid);
+          copyXUIDBtn.style.opacity = "0.5";
+          setTimeout(() => copyXUIDBtn.style.opacity = "1", 800);
+        };
+      }
+
+      // Download Bedrock skin handler
+      const downloadBedrockSkin = document.getElementById('downloadBedrockSkin');
+      if (downloadBedrockSkin) {
+        downloadBedrockSkin.onclick = async (e) => {
+          e.preventDefault();
+          const url = `https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`;
+          const response = await fetch(url);
+          const blob = await response.blob();
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = `.${data.gamertag}_skin.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(link.href);
+        };
+      }
+    }, 100);
     
   } catch (err) {
     resultDiv.innerHTML = `<p class="text-danger" style="font-size: 90%;">Bedrock user not found.</p>`;
