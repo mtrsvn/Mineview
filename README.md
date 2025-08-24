@@ -2,7 +2,7 @@
 
 **Mineview** is a small web-based tool that allows users to view Minecraft player profiles for both **Java Edition** and **Bedrock Edition**. It fetches player information such as username, UUID/XUID, and view of their skin. Users can also download the skin directly.
 
-- ℹ️ Live Website: https://mtrsvn.github.io/Mineview/
+- ℹ️ Live Website: https://mineview-livid.vercel.app
 ---
 
 ## 🌟 Features
