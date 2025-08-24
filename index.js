@@ -34,20 +34,20 @@ async function searchJava() {
       </div>
     </div>
   `;
-  
+
     setTimeout(() => {
-      const container = document.getElementById('skinViewer');
+      const container = document.getElementById("skinViewer");
       if (container) {
-        container.innerHTML = '';
+        container.innerHTML = "";
         try {
           const isMobile = window.innerWidth <= 768;
           const width = isMobile ? 200 : 300;
           const height = isMobile ? 260 : 400;
-          if (typeof skinview3d !== 'undefined' && skinview3d.SkinViewer) {
+          if (typeof skinview3d !== "undefined" && skinview3d.SkinViewer) {
             const skinViewer = new skinview3d.SkinViewer({
               width,
               height,
-              skin: `https://crafatar.com/skins/${data.id}`
+              skin: `https://starlightskins.lunareclipse.studio/render/skin/${data.id}/default`,
             });
             container.appendChild(skinViewer.canvas);
             if (skinview3d.IdleAnimation) {
@@ -55,41 +55,41 @@ async function searchJava() {
               skinViewer.animation.speed = 0.5;
             }
           } else {
-            throw new Error('skinview3d library not loaded');
+            throw new Error("skinview3d library not loaded");
           }
         } catch (skinError) {
           container.innerHTML = `<img src="https://starlightskins.lunareclipse.studio/render/walking/${data.username}/full" style="width: 200px; height: auto;" alt="${data.username} skin">`;
         }
       }
     }, 500);
- 
+
     setTimeout(() => {
-      const copyUsernameBtn = document.getElementById('copyJavaUsername');
+      const copyUsernameBtn = document.getElementById("copyJavaUsername");
       if (copyUsernameBtn) {
         copyUsernameBtn.onclick = () => {
           navigator.clipboard.writeText(data.username);
           copyUsernameBtn.style.opacity = "0.5";
-          setTimeout(() => copyUsernameBtn.style.opacity = "1", 800);
+          setTimeout(() => (copyUsernameBtn.style.opacity = "1"), 800);
         };
       }
-      const copyUUIDBtn = document.getElementById('copyJavaUUID');
+      const copyUUIDBtn = document.getElementById("copyJavaUUID");
       if (copyUUIDBtn) {
         copyUUIDBtn.onclick = () => {
           navigator.clipboard.writeText(data.id);
           copyUUIDBtn.style.opacity = "0.5";
-          setTimeout(() => copyUUIDBtn.style.opacity = "1", 800);
+          setTimeout(() => (copyUUIDBtn.style.opacity = "1"), 800);
         };
       }
 
       // Download Java skin handler
-      const downloadJavaSkin = document.getElementById('downloadJavaSkin');
+      const downloadJavaSkin = document.getElementById("downloadJavaSkin");
       if (downloadJavaSkin) {
         downloadJavaSkin.onclick = async (e) => {
           e.preventDefault();
           const url = `https://starlightskins.lunareclipse.studio/render/skin/${data.username}/default`;
           const response = await fetch(url);
           const blob = await response.blob();
-          const link = document.createElement('a');
+          const link = document.createElement("a");
           link.href = URL.createObjectURL(blob);
           link.download = `${data.username}_skin.png`;
           document.body.appendChild(link);
@@ -99,7 +99,6 @@ async function searchJava() {
         };
       }
     }, 100);
-    
   } catch (err) {
     resultDiv.innerHTML = `<p class="text-danger" style="font-size: 90%;">Java user not found.</p>`;
   }
@@ -139,20 +138,20 @@ async function searchBedrock() {
       </div>
     </div>
   `;
-  
+
     setTimeout(() => {
-      const container = document.getElementById('skinViewerBedrock');
+      const container = document.getElementById("skinViewerBedrock");
       if (container) {
-        container.innerHTML = '';
+        container.innerHTML = "";
         try {
           const isMobile = window.innerWidth <= 768;
           const width = isMobile ? 200 : 300;
           const height = isMobile ? 260 : 400;
-          if (typeof skinview3d !== 'undefined' && skinview3d.SkinViewer) {
+          if (typeof skinview3d !== "undefined" && skinview3d.SkinViewer) {
             const skinViewer = new skinview3d.SkinViewer({
               width,
               height,
-              skin: `https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`
+              skin: `https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`,
             });
             container.appendChild(skinViewer.canvas);
             if (skinview3d.IdleAnimation) {
@@ -160,7 +159,7 @@ async function searchBedrock() {
               skinViewer.animation.speed = 0.5;
             }
           } else {
-            throw new Error('skinview3d library not loaded');
+            throw new Error("skinview3d library not loaded");
           }
         } catch (skinError) {
           container.innerHTML = `<img src="https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default" style="width: 200px; height: auto;" alt="${data.gamertag} skin">`;
@@ -168,34 +167,35 @@ async function searchBedrock() {
       }
     }, 500);
 
-
     setTimeout(() => {
-      const copyGamertagBtn = document.getElementById('copyBedrockGamertag');
+      const copyGamertagBtn = document.getElementById("copyBedrockGamertag");
       if (copyGamertagBtn) {
         copyGamertagBtn.onclick = () => {
           navigator.clipboard.writeText(data.gamertag);
           copyGamertagBtn.style.opacity = "0.5";
-          setTimeout(() => copyGamertagBtn.style.opacity = "1", 800);
+          setTimeout(() => (copyGamertagBtn.style.opacity = "1"), 800);
         };
       }
-      const copyXUIDBtn = document.getElementById('copyBedrockXUID');
+      const copyXUIDBtn = document.getElementById("copyBedrockXUID");
       if (copyXUIDBtn) {
         copyXUIDBtn.onclick = () => {
           navigator.clipboard.writeText(data.xuid);
           copyXUIDBtn.style.opacity = "0.5";
-          setTimeout(() => copyXUIDBtn.style.opacity = "1", 800);
+          setTimeout(() => (copyXUIDBtn.style.opacity = "1"), 800);
         };
       }
 
       // Download Bedrock skin handler
-      const downloadBedrockSkin = document.getElementById('downloadBedrockSkin');
+      const downloadBedrockSkin = document.getElementById(
+        "downloadBedrockSkin"
+      );
       if (downloadBedrockSkin) {
         downloadBedrockSkin.onclick = async (e) => {
           e.preventDefault();
           const url = `https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`;
           const response = await fetch(url);
           const blob = await response.blob();
-          const link = document.createElement('a');
+          const link = document.createElement("a");
           link.href = URL.createObjectURL(blob);
           link.download = `.${data.gamertag}_skin.png`;
           document.body.appendChild(link);
@@ -205,7 +205,6 @@ async function searchBedrock() {
         };
       }
     }, 100);
-    
   } catch (err) {
     resultDiv.innerHTML = `<p class="text-danger" style="font-size: 90%;">Bedrock user not found.</p>`;
   }

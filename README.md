@@ -15,14 +15,7 @@
 
 ## 🔧 APIs Used
 
-### ✅ Java Edition
-
-- **PlayerDB API**  
-  https://playerdb.co/  
-  Endpoint:  
-  `https://playerdb.co/api/player/minecraft/{username}`
-
-### ✅ Bedrock Edition
+### ✅ Java and Bedrock Edition
 
 - **MCProfile.io API**  
   https://mcprofile.io/  
@@ -33,8 +26,6 @@
 
 - **Starlight Skins by Lunar Eclipse Studio**  
   https://starlightskins.lunareclipse.studio/  
-  - Skin:  
-    `https://starlightskins.lunareclipse.studio/render/walking/{username}/full`
   - Download PNG skin:  
     `https://starlightskins.lunareclipse.studio/render/skin/{username}/default`
 
@@ -44,8 +35,7 @@
 
 This project would not be possible without the following awesome APIs and services:
 
-- 💚 [PlayerDB](https://playerdb.co) – for Minecraft Java player data  
-- 💙 [MCProfile.io](https://mcprofile.io) – for Minecraft Bedrock player data  
+- 💙 [MCProfile.io](https://mcprofile.io) – for Player data  
 - 💜 [Starlight Skins](https://starlightskins.lunareclipse.studio) by Lunar Eclipse Studio – for skin 
 
 Big thanks to the creators and maintainers of these services for making them free and accessible to the community.
