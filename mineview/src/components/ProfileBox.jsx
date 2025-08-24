@@ -73,6 +73,23 @@ function ProfileBox() {
 // Helper components for rendering results
 
 function JavaResult({ data }) {
+  const handleCopy = (text, label) => {
+    navigator.clipboard.writeText(text);
+    if (window.Swal) {
+      window.Swal.fire({
+        title: `Copied ${label}`,
+        timer: 1200,
+        showConfirmButton: false,
+        position: "top",
+        toast: true,
+        icon: undefined,
+        customClass: {
+          title: 'swal-title-dark'
+        }
+      });
+    }
+  };
+
   React.useEffect(() => {
     // skinview3d needs to be loaded via CDN and available as window.skinview3d
     const container = document.getElementById("skinViewer");
@@ -99,12 +116,12 @@ function JavaResult({ data }) {
       <p style={{ margin: "10px", fontSize: "90%" }}>
         Username: {data.username}
         <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy Username"
-          onClick={() => navigator.clipboard.writeText(data.username)} />
+          onClick={() => handleCopy(data.username, "Username")} />
       </p>
       <p style={{ margin: "10px", fontSize: "90%" }}>
         UUID: {data.id}
         <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy UUID"
-          onClick={() => navigator.clipboard.writeText(data.id)} />
+          onClick={() => handleCopy(data.id, "UUID")} />
       </p>
       <div id="skinViewer" style={{ margin: "10px auto", width: "300px", height: "400px" }}></div>
       <div className="download-btn-container">
@@ -122,6 +139,23 @@ function JavaResult({ data }) {
 }
 
 function BedrockResult({ data }) {
+  const handleCopy = (text, label) => {
+    navigator.clipboard.writeText(text);
+    if (window.Swal) {
+      window.Swal.fire({
+        title: `Copied ${label}`,
+        timer: 1200,
+        showConfirmButton: false,
+        position: "top",
+        toast: true,
+        icon: undefined,
+        customClass: {
+          title: 'swal-title-dark'
+        }
+      });
+    }
+  };
+
   React.useEffect(() => {
     const container = document.getElementById("skinViewerBedrock");
     if (container && window.skinview3d && window.skinview3d.SkinViewer) {
@@ -147,12 +181,12 @@ function BedrockResult({ data }) {
       <p style={{ margin: "10px", fontSize: "90%" }}>
         Gamertag: {data.gamertag}
         <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy Gamertag"
-          onClick={() => navigator.clipboard.writeText(data.gamertag)} />
+          onClick={() => handleCopy(data.gamertag, "Gamertag")} />
       </p>
       <p style={{ margin: "10px", fontSize: "90%" }}>
         XUID: {data.xuid}
         <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy XUID"
-          onClick={() => navigator.clipboard.writeText(data.xuid)} />
+          onClick={() => handleCopy(data.xuid, "XUID")} />
       </p>
       <div id="skinViewerBedrock" style={{ margin: "10px auto", width: "300px", height: "400px" }}></div>
       <div className="download-btn-container">

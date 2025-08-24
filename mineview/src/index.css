@@ -238,3 +238,7 @@ body {
     height: 280px !important;
   }
 }
+
+.swal-title-dark {
+  color: #1c1d1e !important;
+}
