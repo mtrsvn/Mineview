@@ -21,7 +21,7 @@ function ProfileBox() {
       );
     } catch (err) {
       setResult(
-        <p className="text-danger" style={{ fontSize: "90%" }}>Java user not found.</p>
+        <p className="text-red-600 text-[90%]">Java user not found.</p>
       );
     } finally {
       setLoading(false);
@@ -42,7 +42,7 @@ function ProfileBox() {
       );
     } catch (err) {
       setResult(
-        <p className="text-danger" style={{ fontSize: "90%" }}>Bedrock user not found.</p>
+        <p className="text-red-600 text-[90%]">Bedrock user not found.</p>
       );
     } finally {
       setLoading(false);
@@ -51,18 +51,29 @@ function ProfileBox() {
 
   return (
     <div className="profile-box">
-      <div className="search-container">
+      <div className="search-container flex gap-[10px]">
         <input
           type="text"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          className="form-control"
+          className="form-control profile-input rounded-[10px] text-indent-[4px] px-[10px] py-[6px] w-full flex-1 text-white bg-[#222] transition-all duration-200 focus:border-[#888] focus:shadow-[0_0_6px_#222] hover:border-[#888] hover:shadow-[0_0_6px_#222] border"
           placeholder="Steve"
-          style={{ color: "#fff" }}
         />
-        <div className="button-container">
-          <button className="btn" disabled={loading} onClick={handleSearchJava}>Java</button>
-          <button className="btn" disabled={loading} onClick={handleSearchBedrock}>Bedrock</button>
+        <div className="button-container flex gap-[10px] flex-none">
+          <button
+            className={`btn profile-btn rounded-[10px] px-[16px] py-[6px] w-full transition-all duration-200 border bg-transparent hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:border-[#888] focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:border-[#888]`}
+            disabled={loading}
+            onClick={handleSearchJava}
+          >
+            Java
+          </button>
+          <button
+            className={`btn profile-btn rounded-[10px] px-[16px] py-[6px] w-full transition-all duration-200 border bg-transparent hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:border-[#888] focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:border-[#888]`}
+            disabled={loading}
+            onClick={handleSearchBedrock}
+          >
+            Bedrock
+          </button>
         </div>
       </div>
       <div id="result">{result}</div>
@@ -91,7 +102,6 @@ function JavaResult({ data }) {
   };
 
   React.useEffect(() => {
-    // skinview3d needs to be loaded via CDN and available as window.skinview3d
     const container = document.getElementById("skinViewer");
     if (container && window.skinview3d && window.skinview3d.SkinViewer) {
       container.innerHTML = "";
@@ -111,24 +121,23 @@ function JavaResult({ data }) {
     }
   }, [data.id]);
   return (
-    <div style={{ margin: "10px" }}>
-      <h4 style={{ margin: "10px", fontSize: "1.3em" }}>Java Profile: </h4>
-      <p style={{ margin: "10px", fontSize: "90%" }}>
+    <div className="m-[10px]">
+      <h4 className="m-[10px] text-[1.3em]">Java Profile: </h4>
+      <p className="m-[10px] text-[90%]">
         Username: {data.username}
-        <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy Username"
+        <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy Username"
           onClick={() => handleCopy(data.username, "Username")} />
       </p>
-      <p style={{ margin: "10px", fontSize: "90%" }}>
+      <p className="m-[10px] text-[90%]">
         UUID: {data.id}
-        <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy UUID"
+        <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy UUID"
           onClick={() => handleCopy(data.id, "UUID")} />
       </p>
-      <div id="skinViewer" style={{ margin: "10px auto", width: "300px", height: "400px" }}></div>
+      <div id="skinViewer" className="m-[10px_auto]" style={{ width: "300px", height: "400px" }}></div>
       <div className="download-btn-container">
         <a
           href={`https://starlightskins.lunareclipse.studio/render/skin/${data.username}/default`}
-          className="btn w-100"
-          style={{ marginTop: "10px" }}
+          className="btn profile-btn mt-[10px] w-full rounded-[10px] block"
           download={`${data.username}_skin.png`}
         >
           Download Skin
@@ -176,24 +185,23 @@ function BedrockResult({ data }) {
     }
   }, [data.gamertag]);
   return (
-    <div style={{ margin: "10px" }}>
-      <h4 style={{ margin: "10px", fontSize: "1.3em" }}>Bedrock Profile: </h4>
-      <p style={{ margin: "10px", fontSize: "90%" }}>
+    <div className="m-[10px]">
+      <h4 className="m-[10px] text-[1.3em]">Bedrock Profile: </h4>
+      <p className="m-[10px] text-[90%]">
         Gamertag: {data.gamertag}
-        <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy Gamertag"
+        <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy Gamertag"
           onClick={() => handleCopy(data.gamertag, "Gamertag")} />
       </p>
-      <p style={{ margin: "10px", fontSize: "90%" }}>
+      <p className="m-[10px] text-[90%]">
         XUID: {data.xuid}
-        <i className="fa-solid fa-copy" style={{ cursor: "pointer", fontSize: "0.9em", verticalAlign: "middle", marginLeft: "6px" }} title="Copy XUID"
+        <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy XUID"
           onClick={() => handleCopy(data.xuid, "XUID")} />
       </p>
-      <div id="skinViewerBedrock" style={{ margin: "10px auto", width: "300px", height: "400px" }}></div>
+      <div id="skinViewerBedrock" className="m-[10px_auto]" style={{ width: "300px", height: "400px" }}></div>
       <div className="download-btn-container">
         <a
           href={`https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`}
-          className="btn w-100"
-          style={{ marginTop: "10px" }}
+          className="btn profile-btn mt-[10px] w-full rounded-[10px] block"
           download={`.${data.gamertag}_skin.png`}
         >
           Download Skin
