@@ -6,6 +6,10 @@ function ProfileBox() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  // Lowered padding, consistent transition, pointer on hover
+  const btnClass = "btn profile-btn rounded-[10px] px-[10px] py-[4px] border-[1.5px] border-white text-white bg-transparent transition-all duration-200 hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:cursor-pointer focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:cursor-pointer";
+  const inputClass = "form-control profile-input rounded-[10px] px-[10px] py-[4px] border-[1.5px] border-white text-white bg-[#222] transition-all duration-200 focus:border-[#888] focus:shadow-[0_0_6px_#222] hover:border-[#888] hover:shadow-[0_0_6px_#222]";
+
   const handleSearchJava = async () => {
     setLoading(true);
     setResult(<p>Loading Java profile...</p>);
@@ -51,26 +55,28 @@ function ProfileBox() {
 
   return (
     <div className="profile-box">
-      <div className="search-container flex gap-[10px]">
+      <div className="search-container flex gap-[10px] mb-[6px]">
         <input
           type="text"
           value={username}
           onChange={e => setUsername(e.target.value)}
-          className="form-control profile-input rounded-[10px] text-indent-[4px] px-[10px] py-[6px] w-full flex-1 text-white bg-[#222] transition-all duration-200 focus:border-[#888] focus:shadow-[0_0_6px_#222] hover:border-[#888] hover:shadow-[0_0_6px_#222] border"
+          className={inputClass}
           placeholder="Steve"
         />
         <div className="button-container flex gap-[10px] flex-none">
           <button
-            className={`btn profile-btn rounded-[10px] px-[16px] py-[6px] w-full transition-all duration-200 border bg-transparent hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:border-[#888] focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:border-[#888]`}
+            className={btnClass}
             disabled={loading}
             onClick={handleSearchJava}
+            style={{ fontSize: "1em" }}
           >
             Java
           </button>
           <button
-            className={`btn profile-btn rounded-[10px] px-[16px] py-[6px] w-full transition-all duration-200 border bg-transparent hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:border-[#888] focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:border-[#888]`}
+            className={btnClass}
             disabled={loading}
             onClick={handleSearchBedrock}
+            style={{ fontSize: "1em" }}
           >
             Bedrock
           </button>
@@ -80,8 +86,6 @@ function ProfileBox() {
     </div>
   );
 }
-
-// Helper components for rendering results
 
 function JavaResult({ data }) {
   const handleCopy = (text, label) => {
@@ -121,23 +125,23 @@ function JavaResult({ data }) {
     }
   }, [data.id]);
   return (
-    <div className="m-[10px]">
-      <h4 className="m-[10px] text-[1.3em]">Java Profile: </h4>
-      <p className="m-[10px] text-[90%]">
+    <div className="m-[6px]">
+      <h4 className="m-[6px] text-[1.3em]">Java Profile: </h4>
+      <p className="m-[6px] text-[90%]">
         Username: {data.username}
         <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy Username"
           onClick={() => handleCopy(data.username, "Username")} />
       </p>
-      <p className="m-[10px] text-[90%]">
+      <p className="m-[6px] text-[90%]">
         UUID: {data.id}
         <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy UUID"
           onClick={() => handleCopy(data.id, "UUID")} />
       </p>
-      <div id="skinViewer" className="m-[10px_auto]" style={{ width: "300px", height: "400px" }}></div>
+      <div id="skinViewer" className="m-[6px_auto]" style={{ width: "300px", height: "400px" }}></div>
       <div className="download-btn-container">
         <a
           href={`https://starlightskins.lunareclipse.studio/render/skin/${data.username}/default`}
-          className="btn profile-btn mt-[10px] w-full rounded-[10px] block"
+          className="btn profile-btn mt-[6px] rounded-[10px] block px-[10px] py-[4px] border-[1.5px] border-white text-white bg-transparent transition-all duration-200 hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:cursor-pointer focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:cursor-pointer"
           download={`${data.username}_skin.png`}
         >
           Download Skin
@@ -185,23 +189,23 @@ function BedrockResult({ data }) {
     }
   }, [data.gamertag]);
   return (
-    <div className="m-[10px]">
-      <h4 className="m-[10px] text-[1.3em]">Bedrock Profile: </h4>
-      <p className="m-[10px] text-[90%]">
+    <div className="m-[6px]">
+      <h4 className="m-[6px] text-[1.3em]">Bedrock Profile: </h4>
+      <p className="m-[6px] text-[90%]">
         Gamertag: {data.gamertag}
         <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy Gamertag"
           onClick={() => handleCopy(data.gamertag, "Gamertag")} />
       </p>
-      <p className="m-[10px] text-[90%]">
+      <p className="m-[6px] text-[90%]">
         XUID: {data.xuid}
         <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy XUID"
           onClick={() => handleCopy(data.xuid, "XUID")} />
       </p>
-      <div id="skinViewerBedrock" className="m-[10px_auto]" style={{ width: "300px", height: "400px" }}></div>
+      <div id="skinViewerBedrock" className="m-[6px_auto]" style={{ width: "300px", height: "400px" }}></div>
       <div className="download-btn-container">
         <a
           href={`https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`}
-          className="btn profile-btn mt-[10px] w-full rounded-[10px] block"
+          className="btn profile-btn mt-[6px] rounded-[10px] block px-[10px] py-[4px] border-[1.5px] border-white text-white bg-transparent transition-all duration-200 hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:cursor-pointer focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:cursor-pointer"
           download={`.${data.gamertag}_skin.png`}
         >
           Download Skin
