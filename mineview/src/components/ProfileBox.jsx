@@ -6,9 +6,10 @@ function ProfileBox() {
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // Lowered padding, consistent transition, pointer on hover
-  const btnClass = "btn profile-btn rounded-[10px] px-[10px] py-[4px] border-[1.5px] border-white text-white bg-transparent transition-all duration-200 hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:cursor-pointer focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:cursor-pointer";
-  const inputClass = "form-control profile-input rounded-[10px] px-[10px] py-[4px] border-[1.5px] border-white text-white bg-[#222] transition-all duration-200 focus:border-[#888] focus:shadow-[0_0_6px_#222] hover:border-[#888] hover:shadow-[0_0_6px_#222]";
+  // Use flex and justify-center items-center for button text centering
+  const inputBtnHeight = "min-h-[36px] h-[36px]";
+  const btnClass = `btn profile-btn ${inputBtnHeight} rounded-[10px] px-[10px] py-[2px] border-[1.5px] border-white text-white bg-transparent transition-all duration-200 hover:bg-[#444] hover:text-white hover:shadow-[0_0_8px_#222] hover:cursor-pointer focus:bg-[#444] focus:text-white focus:shadow-[0_0_8px_#222] focus:cursor-pointer w-full sm:w-auto flex justify-center items-center`;
+  const inputClass = `form-control profile-input ${inputBtnHeight} rounded-[10px] px-[10px] py-[2px] border-[1.5px] border-white text-white bg-[#222] transition-all duration-200 focus:border-[#888] focus:shadow-[0_0_6px_#222] hover:border-[#888] hover:shadow-[0_0_6px_#222] w-full sm:w-auto`;
 
   const handleSearchJava = async () => {
     setLoading(true);
@@ -55,7 +56,7 @@ function ProfileBox() {
 
   return (
     <div className="profile-box">
-      <div className="search-container flex gap-[10px] mb-[6px]">
+      <div className="search-container flex flex-col sm:flex-row gap-[10px] mb-[6px]">
         <input
           type="text"
           value={username}
@@ -63,7 +64,7 @@ function ProfileBox() {
           className={inputClass}
           placeholder="Steve"
         />
-        <div className="button-container flex gap-[10px] flex-none">
+        <div className="button-container flex flex-col sm:flex-row gap-[10px] flex-none w-full sm:w-auto">
           <button
             className={btnClass}
             disabled={loading}
@@ -83,6 +84,34 @@ function ProfileBox() {
         </div>
       </div>
       <div id="result">{result}</div>
+      {/* Add responsive styles */}
+      <style>{`
+        @media (max-width: 768px) {
+          .profile-box .search-container {
+            flex-direction: column !important;
+          }
+          .profile-box .profile-input {
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+          .profile-box .button-container {
+            flex-direction: column !important;
+            width: 100% !important;
+          }
+          .profile-box .button-container .profile-btn {
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+        }
+        @media (max-width: 500px) {
+          .profile-box #skinViewer, 
+          .profile-box #skinViewerBedrock {
+            width: 100% !important;
+            height: 220px !important;
+            min-width: 0;
+          }
+        }
+      `}</style>
     </div>
   );
 }
@@ -137,7 +166,7 @@ function JavaResult({ data }) {
         <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy UUID"
           onClick={() => handleCopy(data.id, "UUID")} />
       </p>
-      <div id="skinViewer" className="m-[6px_auto]" style={{ width: "300px", height: "400px" }}></div>
+      <div id="skinViewer" className="m-[6px_auto]" style={{ width: "300px", height: "400px", maxWidth: "100%" }}></div>
       <div className="download-btn-container">
         <a
           href={`https://starlightskins.lunareclipse.studio/render/skin/${data.username}/default`}
@@ -201,7 +230,7 @@ function BedrockResult({ data }) {
         <i className="fa-solid fa-copy cursor-pointer text-[0.9em] align-middle ml-[6px]" title="Copy XUID"
           onClick={() => handleCopy(data.xuid, "XUID")} />
       </p>
-      <div id="skinViewerBedrock" className="m-[6px_auto]" style={{ width: "300px", height: "400px" }}></div>
+      <div id="skinViewerBedrock" className="m-[6px_auto]" style={{ width: "300px", height: "400px", maxWidth: "100%" }}></div>
       <div className="download-btn-container">
         <a
           href={`https://starlightskins.lunareclipse.studio/render/skin/.${data.gamertag}/default`}
